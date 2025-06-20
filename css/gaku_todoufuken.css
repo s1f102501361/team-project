@@ -29,7 +29,7 @@ h1 {
   font-size: 1.4em;
   font-weight: 600;
   color: #fff;
-  background-color: #a7986b;
+  background-color: #c2b48b;
   padding: 8px 12px;
   border-radius: 6px;
   margin-bottom: 30px;
@@ -99,6 +99,7 @@ h1 {
   background-color: #c2b48b;
   color: #fff;
   font-weight: 600;
+  font-size: 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;

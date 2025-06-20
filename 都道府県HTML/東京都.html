@@ -2,39 +2,81 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>XXXXX</title>
+  <title>東京都</title>
   <link rel="stylesheet" href="../css/gaku_todoufuken.css" />
 </head>
-
 <body>
   <h1>日本の都道府県観光地紹介</h1>
-
-  <h2 id="prefecture-name">XXXXX</h2>
+  <h2 id="prefecture-name">東京都</h2>
 
   <div id="content">
     <div id="tourism-photo">
-      <h3>選択した観光地の写真</h3>
-      <img src="https://nourii.co/uploads/image/file/1128/花草茶_黃金洋甘菊_20180105.jpg" height="300" alt="観光地のサンプル写真" />
+      <h3 id="photo-heading">選択した観光地の写真</h3>
+      <img id="spot-img" src="" alt="観光地の写真" height="300" />
     </div>
-
 
     <div id="tourism-info">
       <div id="tourism-area">
         <h3>観光地を選択してください</h3>
         <ul id="tourism-list">
-          <li><button>A</button></li>
-          <li><button>B</button></li>
-          <li><button>C</button></li>
+          <li><button class="spot-btn" data-key="A">浅草寺</button></li>
+          <li><button class="spot-btn" data-key="B">東京スカイツリー</button></li>
+          <li><button class="spot-btn" data-key="C">明治神宮</button></li>
         </ul>
       </div>
       <div id="tourism-intro">
-        <h3>選択した観光地の紹介</h3>
-        <p>観光地の説明文</p>
+        <h3 id="intro-heading">選択した観光地の紹介</h3>
+        <p id="spot-desc">観光地の説明文</p>
       </div>
     </div>
-
   </div>
 
   <a id="back-link" href="../top.html">← トップページに戻る</a>
+
+  <script>
+    const SPOTS = {
+      A: {
+        name: "浅草寺",
+        img: "https://images.pexels.com/photos/32416124/pexels-photo-32416124.jpeg",
+        desc: "浅草寺は東京都台東区浅草に鎮座する寺院で、628年の創建と伝えられる都内最古の仏教寺院である。本尊に聖観世音菩薩を安置し、雷門の巨大な朱塗り提灯、色鮮やかな仲見世通り、重厚な宝蔵門と五重塔が織りなす壮麗な景観は、古来より「浅草観音」の名で広く親しまれてきた。毎年五月の三社祭、七月のほおずき市をはじめ、江戸文化を今に伝える数々の年中行事が境内を彩り、国内外の参拝者を絶えず魅了している。第二次世界大戦による焼失からの復興を経た今日も、浅草寺は信仰と観光双方の中心として東京の精神的支柱であり続け、その荘厳な伽藍と祭礼の熱気が、江戸から続く下町の心意気を現代へと受け継いでいる。"
+      },
+      B: {
+        name: "東京スカイツリー",
+        img: "https://images.pexels.com/photos/30993363/pexels-photo-30993363.jpeg",
+        desc: "東京スカイツリーは墨田区押上にそびえる高さ634メートルの電波塔で、2012年の開業以来、東京の新たなランドマークとなっている。竹のしなやかさと日本刀の反りを映した外観と心柱制振構造が、優美さと高度な耐震性を兼備した。地上350 mと450 mの展望施設からは関東平野や富士山まで一望でき、LEDライティング「粋」「雅」など多彩な光が夜空を彩る。麓の商業施設「東京ソラマチ」と下町情緒豊かな周辺エリアが相乗し、放送インフラと観光拠点の両面で地域活性化を牽引している。"
+      },
+      C: {
+        name: "明治神宮",
+        img: "https://images.pexels.com/photos/32005309/pexels-photo-32005309.jpeg",
+        desc: "明治神宮は、明治天皇と昭憲皇太后を祀る1920年創建の神社。代々木の杜に鎮まり、約10万本の献木からなる深い常緑林が都心に癒やしを与える。大鳥居をくぐれば広がる玉砂利の参道、素木造りの本殿、清正井を抱く御苑が静寂と清浄を伝え、初詣や結婚式、秋の大祭には多くの参拝者が雅楽の音とともに日本の精神文化を体感する。広大な敷地は外苑と一体となり、四季折々の彩りで訪れる人々を迎える。夜間はライトアップも幻想的だ。"
+      }
+    };
+
+    const buttons       = document.querySelectorAll('.spot-btn');
+    const imgTag        = document.getElementById('spot-img');
+    const descPara      = document.getElementById('spot-desc');
+    const introHeading  = document.getElementById('intro-heading');
+    const photoHeading  = document.getElementById('photo-heading');
+
+    function updateUI(key){
+      const spot = SPOTS[key];
+      if(!spot) return;
+
+      imgTag.src = spot.img;
+      imgTag.alt = `${spot.name}の写真`;
+
+      introHeading.textContent = `${spot.name}の紹介`;
+      photoHeading.textContent = `${spot.name}の写真`;
+      descPara.textContent     = spot.desc;
+
+      buttons.forEach(b => b.classList.remove('active'));
+      const currentBtn = document.querySelector(`.spot-btn[data-key="${key}"]`);
+      if(currentBtn) currentBtn.classList.add('active');
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => updateUI(btn.dataset.key)));
+
+    updateUI('A');
+  </script>
 </body>
 </html>
