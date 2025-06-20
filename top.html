@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>日本の都道府県おすすめ紹介</title>
+  <link rel="stylesheet" href="CSS/top.css">
+</head>
+<body>
+
+  <h1>日本の都道府県観光地紹介</h1>
+
+  <div id="photoGallery" style="margin-top: 40px;">
+    <h2>みんなの写真ギャラリー</h2>
+
+    <div id="slider" style="overflow: hidden; white-space: nowrap; border: 1px solid #ccc; border-radius: 8px;">
+      <div id="sliderTrack" style="display: inline-block; transition: transform 0.5s ease;"></div>
+    </div>
+
+    <div id="uploadSection" style="margin-top: 20px;">
+      <h3>あなたの思い出を投稿しよう</h3>
+      <input type="file" id="photoUpload" accept="image/*">
+      <button onclick="handleUpload()">アップロード</button>
+      <p id="uploadStatus"></p>
+    </div>
+  </div>
+
+
+  <input type="text" id="searchBar" placeholder="都道府県を検索">
+
+  <div class="prefecture-list" id="prefectureList">
+    <button class="prefecture" data-pref="東京都" onclick="visitPrefecture('東京都')">東京都</button>
+  </div>
+
+  <div class="ranking">
+    <h2>今月の人気都道府県ランキング</h2>
+    <table id="rankingTable">
+      <thead>
+        <tr><th>順位</th><th>都道府県</th><th>訪問数</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+
+    let imagePaths = [
+      "uploads/photo1.jpg",
+      "uploads/photo2.jpg",
+      "uploads/photo3.jpg"
+    ];
+
+    const sliderTrack = document.getElementById("sliderTrack");
+
+    function populateSlider() {
+      sliderTrack.innerHTML = '';
+      const shuffled = [...imagePaths].sort(() => Math.random() - 0.5);
+      shuffled.forEach(path => {
+        const img = document.createElement("img");
+        img.src = path;
+        img.style.width = "200px";
+        img.style.height = "150px";
+        img.style.objectFit = "cover";
+        img.style.marginRight = "10px";
+        img.style.borderRadius = "4px";
+        sliderTrack.appendChild(img);
+      });
+    }
+
+    function handleUpload() {
+      const input = document.getElementById('photoUpload');
+      const file = input.files[0];
+      const status = document.getElementById('uploadStatus');
+
+      if (!file) {
+        status.textContent = 'ファイルを選択してください。';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imagePaths.push(e.target.result);
+        populateSlider();
+        status.textContent = 'アップロード完了！（この端末のみ）';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function startScrolling() {
+      let offset = 0;
+      setInterval(() => {
+        offset += 1;
+        sliderTrack.style.transform = `translateX(-${offset}px)`;
+        if (offset > sliderTrack.scrollWidth - 500) {
+          offset = 0;
+        }
+      }, 30);
+    }
+
+    populateSlider();
+    startScrolling();
+
+
+    function visitPrefecture(pref) {
+      const key = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${pref}`;
+      const visitCounts = JSON.parse(localStorage.getItem('visitCounts') || '{}');
+      visitCounts[key] = (visitCounts[key] || 0) + 1;
+      localStorage.setItem('visitCounts', JSON.stringify(visitCounts));
+      window.location.href = `./都道府県HTML/${pref}.html`;
+    }
+
+    function updateRanking() {
+      const visitCounts = JSON.parse(localStorage.getItem('visitCounts') || '{}');
+      const now = new Date();
+      const prefix = `${now.getFullYear()}-${now.getMonth() + 1}-`;
+
+      const monthlyCounts = {};
+      for (const key in visitCounts) {
+        if (key.startsWith(prefix)) {
+          const pref = key.replace(prefix, '');
+          monthlyCounts[pref] = (monthlyCounts[pref] || 0) + visitCounts[key];
+        }
+      }
+
+      const sorted = Object.entries(monthlyCounts).sort((a, b) => b[1] - a[1]);
+      const tbody = document.querySelector("#rankingTable tbody");
+      tbody.innerHTML = '';
+      sorted.forEach(([pref, count], index) => {
+        const row = `<tr><td>${index + 1}</td><td>${pref}</td><td>${count}</td></tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+    }
+
+    document.getElementById("searchBar").addEventListener("input", () => {
+      const search = document.getElementById("searchBar").value.trim();
+      document.querySelectorAll(".prefecture-list .prefecture").forEach(button => {
+        const pref = button.dataset.pref;
+        button.style.display = pref.includes(search) ? "inline-block" : "none";
+      });
+    });
+
+    updateRanking();
+  </script>
+</body>
+</html>
