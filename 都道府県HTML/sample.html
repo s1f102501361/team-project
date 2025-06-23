@@ -1,3 +1,7 @@
+<!-- 
+6行目と13行目、それから26〜28行目と43〜58行目を直して！
+東京都のHTMLを参考にしても大丈夫だよ。 
+-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,8 +17,8 @@
 
   <div id="content">
     <div id="tourism-photo">
-      <h3>選択した観光地の写真</h3>
-      <img src="https://nourii.co/uploads/image/file/1128/花草茶_黃金洋甘菊_20180105.jpg" height="300" alt="観光地のサンプル写真" />
+      <h3 id="photo-heading">選択した観光地の写真</h3>
+      <img id="spot-img" src="" alt="観光地の写真" height="300" />
     </div>
 
 
@@ -22,19 +26,65 @@
       <div id="tourism-area">
         <h3>観光地を選択してください</h3>
         <ul id="tourism-list">
-          <li><button>A</button></li>
-          <li><button>B</button></li>
-          <li><button>C</button></li>
+          <li><button class="spot-btn" data-key="A">A観光地の名前</button></li>
+          <li><button class="spot-btn" data-key="B">B観光地の名前</button></li>
+          <li><button class="spot-btn" data-key="C">C観光地の名前</button></li>
         </ul>
       </div>
       <div id="tourism-intro">
-        <h3>選択した観光地の紹介</h3>
-        <p>観光地の説明文</p>
+        <h3 id="intro-heading">選択した観光地の紹介</h3>
+        <p id="spot-desc">観光地の説明文</p>
       </div>
     </div>
-
+    
   </div>
 
   <a id="back-link" href="../top.html">← トップページに戻る</a>
+
+  <script>
+    const SPOTS = {
+      A: {
+        name: "A観光地の名前",
+        img: "A観光地のイメージリンク",
+        desc: "A観光地の紹介文"
+      },
+      B: {
+        name: "B観光地の名前",
+        img: "B観光地のイメージリンク",
+        desc: "C観光地の紹介文"
+      },
+      C: {
+        name: "C観光地の名前",
+        img: "C観光地のイメージリンク",
+        desc: "C観光地の紹介文"
+      }
+    };
+
+    const buttons       = document.querySelectorAll('.spot-btn');
+    const imgTag        = document.getElementById('spot-img');
+    const descPara      = document.getElementById('spot-desc');
+    const introHeading  = document.getElementById('intro-heading');
+    const photoHeading  = document.getElementById('photo-heading');
+
+    function updateUI(key){
+      const spot = SPOTS[key];
+      if(!spot) return;
+
+      imgTag.src = spot.img;
+      imgTag.alt = `${spot.name}の写真`;
+
+      introHeading.textContent = `${spot.name}の紹介`;
+      photoHeading.textContent = `${spot.name}の写真`;
+      descPara.textContent     = spot.desc;
+
+      buttons.forEach(b => b.classList.remove('active'));
+      const currentBtn = document.querySelector(`.spot-btn[data-key="${key}"]`);
+      if(currentBtn) currentBtn.classList.add('active');
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => updateUI(btn.dataset.key)));
+
+    updateUI('A');
+  </script>
 </body>
 </html>
