@@ -105,9 +105,19 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.prefecture {
+.finish-prefecture {
   background-color: #e6ddc4;
   border: 1px solid #c2b48b;
+  border-radius: 8px;
+  padding: 10px 6px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.prefecture {
+  background-color: #eeebe2;
+  border: 1px solid #e6ddc4;
   border-radius: 8px;
   padding: 10px 6px;
   margin-bottom: 5px;
