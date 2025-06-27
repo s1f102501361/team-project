@@ -150,3 +150,17 @@ a.back-link:hover {
     flex: 1 1 100%;
   }
 }
+
+#tourism-photo img {
+  transition: transform 0.5s ease;
+}
+#tourism-photo img:hover,
+#tourism-photo img:focus-visible {
+  transform: scale(1.02);
+}
+
+.spot-btn:hover,
+.spot-btn:focus-visible {
+  transform: scale(1.02);
+}
+
