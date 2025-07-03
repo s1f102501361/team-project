@@ -110,6 +110,21 @@ a.back-link:hover {
 #tourism-list li {
   flex: 1 1 6rem;
 }
+#tourism-list button {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: #c2b48b;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+#tourism-list button:hover {
+  background-color: #a7986b;
+}
 
 #tourism-intro p {
   text-align: justify;
@@ -135,7 +150,10 @@ a.back-link:hover {
 }
 
 .spot-btn:hover,
-.spot-btn:focus-visible {
+.spot-btn:focus-visible,
+#back-link:hover,
+#back-link:focus-visible {
   transform: scale(1.02);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
