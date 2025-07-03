@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>写真一覧ギャラリー</title>
+  <link rel="stylesheet" href="CSS/slide.css">
+</head>
+<body>
+  <h1>スライドショー写真一覧</h1>
+  <script>
+    const defaultImages = [
+      "toppicture/1.png",
+      "toppicture/2.png",
+      "toppicture/3.png",
+      "toppicture/4.png"
+    ];
+
+    const uploadedImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+    const allImages = [...defaultImages, ...uploadedImages];
+
+    const gallery = document.querySelector('.gallery');
+    allImages.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = "写真";
+      gallery.appendChild(img);
+    });
+  </script>
+
+</body>
+</html>

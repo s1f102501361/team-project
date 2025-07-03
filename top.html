@@ -23,6 +23,11 @@
       <p id="uploadStatus"></p>
     </div>
   </div>
+  <div style="margin-top: 15px;">
+    <a href="slidepicture.html" target="_blank">
+      <button>写真一覧を見る</button>
+    </a>
+  </div>
 
 
   <input type="text" id="searchBar" placeholder="都道府県を検索">
@@ -92,7 +97,8 @@
     let imagePaths = [
       "toppicture/1.png",
       "toppicture/2.png",
-      "toppicture/3.png"
+      "toppicture/3.png",
+      "toppicture/4.png"
     ];
 
     const sliderTrack = document.getElementById("sliderTrack");
@@ -113,23 +119,28 @@
     }
 
     function handleUpload() {
-      const input = document.getElementById('photoUpload');
-      const file = input.files[0];
-      const status = document.getElementById('uploadStatus');
+    const input = document.getElementById('photoUpload');
+    const file = input.files[0];
+    const status = document.getElementById('uploadStatus');
 
-      if (!file) {
-        status.textContent = 'ファイルを選択してください。';
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        imagePaths.push(e.target.result);
-        populateSlider();
-        status.textContent = 'アップロード完了！（この端末のみ）';
-      };
-      reader.readAsDataURL(file);
+    if (!file) {
+      status.textContent = 'ファイルを選択してください。';
+      return;
     }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imageData = e.target.result;
+      imagePaths.push(imageData);
+      populateSlider();
+      status.textContent = 'アップロード完了！（この端末のみ）';
+      const stored = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+      stored.push(imageData);
+      localStorage.setItem('uploadedImages', JSON.stringify(stored));
+    };
+    reader.readAsDataURL(file);
+  }
+
 
     function startScrolling() {
       let offset = 0;
