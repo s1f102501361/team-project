@@ -19,3 +19,21 @@ h1 {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
+
+#back-link,
+a.back-link {
+  margin-top: 20px;
+  display: inline-block;
+  background-color: #c2b48b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+#back-link:hover,
+a.back-link:hover {
+  background-color: #a7986b;
+}
+
+
+
