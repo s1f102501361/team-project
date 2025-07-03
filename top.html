@@ -91,7 +91,7 @@
       <tbody></tbody>
     </table>
   </div>
-
+  <button id="scrollToTop" title="ページ上部へ">↑</button>
   <script>
 
     let imagePaths = [
@@ -118,7 +118,7 @@
       });
     }
 
-    function handleUpload() {
+  function handleUpload() {
     const input = document.getElementById('photoUpload');
     const file = input.files[0];
     const status = document.getElementById('uploadStatus');
@@ -196,6 +196,20 @@
     });
 
     updateRanking();
+
+    const topButton = document.getElementById("scrollToTop");
+    window.onscroll = function () {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        topButton.style.display = "block";
+      } else {
+        topButton.style.display = "none";
+      }
+    };
+
+    topButton.onclick = function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
   </script>
 </body>
 </html>
