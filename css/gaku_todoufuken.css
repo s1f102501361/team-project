@@ -5,23 +5,19 @@
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #f9f6ef;
+  font-family: 'Noto Serif JP', '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  background-image: url('https://www.transparenttextures.com/patterns/white-wall.png');
+  background-color: #fefaf2;
   margin: 20px;
   line-height: 1.8;
-  color: #333;
-}
-
-header {
-  border-bottom: 2px solid #aaa;
-  margin-bottom: 20px;
+  color: #3c2f23;
 }
 
 h1 {
-  font-size: 2em;
-  color: #333;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 2em;
+  color: #3c2f23;
 }
 
 #prefecture-name {
@@ -29,10 +25,23 @@ h1 {
   font-size: 1.4em;
   font-weight: 600;
   color: #fff;
-  background-color: #c2b48b;
+  background-color: #a58c63;
   padding: 8px 12px;
   border-radius: 6px;
   margin-bottom: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
 }
 
 #content {
@@ -43,47 +52,55 @@ h1 {
   align-items: flex-start;
 }
 
-#tourism-photo {
-  flex: 1 1 50%;
-  min-width: 300px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+#tourism-photo,
+#tourism-area,
+#tourism-intro {
+  background-color: #ffffffdd;
+  border: 1px solid #ddd4c4;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-#tourism-photo h3 {
-  margin-bottom: 10px;
+#tourism-photo h3,
+#tourism-area h3,
+#tourism-intro h3 {
   font-size: 1.2em;
-  color: #333;
+  margin-bottom: 12px;
+  color: #3c2f23;
 }
+
 #tourism-photo img {
   width: 100%;
   height: auto;
   border-radius: 6px;
   margin-top: 10px;
+  transition: transform 0.5s ease;
+}
+#tourism-photo img:hover,
+#tourism-photo img:focus-visible {
+  transform: scale(1.02);
 }
 
-#tourism-info {
-  flex: 1 1 40%;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#tourism-list button,
+#back-link,
+a.back-link {
+  background-color: #a58c63;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+#tourism-list button:hover,
+#back-link:hover,
+a.back-link:hover {
+  background-color: #8f7a54;
 }
 
-#tourism-area {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-#tourism-area h3 {
-  font-size: 1.1em;
-  margin-bottom: 12px;
-  color: #333;
-}
 #tourism-list {
   list-style: none;
   display: flex;
@@ -93,52 +110,9 @@ h1 {
 #tourism-list li {
   flex: 1 1 6rem;
 }
-#tourism-list button {
-  width: 100%;
-  padding: 8px 16px;
-  background-color: #c2b48b;
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.2s ease;
-}
-#tourism-list button:hover {
-  background-color: #a7986b;
-}
 
-#tourism-intro {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-#tourism-intro h3 {
-  font-size: 1.1em;
-  margin-bottom: 12px;
-  color: #333;
-}
 #tourism-intro p {
   text-align: justify;
-}
-
-#back-link,
-a.back-link {
-  margin-top: 20px;
-  display: inline-block;
-  background-color: #c2b48b;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-}
-#back-link:hover,
-a.back-link:hover {
-  background-color: #a7986b;
 }
 
 @media (max-width: 768px) {
@@ -150,6 +124,7 @@ a.back-link:hover {
     flex: 1 1 100%;
   }
 }
+
 
 #tourism-photo img {
   transition: transform 0.5s ease;

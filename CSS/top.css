@@ -1,9 +1,13 @@
 body {
-  font-family: sans-serif;
-  background-color: #f9f6ef;
+  font-family: 'Noto Serif JP', '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  background-image: url('https://www.transparenttextures.com/patterns/white-wall.png'); /* 和紙風 */
+  background-color: #fefaf2;
+  background-repeat: repeat;
   margin: 20px;
   line-height: 1.8;
+  color: #3c2f23;
 }
+
 
 header {
   border-bottom: 2px solid #aaa;
@@ -12,7 +16,30 @@ header {
 
 h1 {
   font-size: 2em;
-  color: #333;
+  color: #3e2f1c;
+  border-left: 6px solid #967259;
+  padding-left: 12px;
+  background-color: #f6f1e7;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.prefecture, .finish-prefecture {
+  background-color: #f9f4ee;
+  border: 1px solid #c5b7a5;
+  color: #3a2f1f;
+  border-radius: 8px;
+  padding: 10px 6px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#scrollToTop {
+  background-color: #967259; /* 焦げ茶色 */
+}
+#scrollToTop:hover {
+  background-color: #6f4e37;
 }
 
 .back-link {
