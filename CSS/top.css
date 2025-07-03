@@ -59,38 +59,31 @@
   right: 40%;
 }
 
-.leaf {
-  position: fixed;
-  top: -50px;
-  width: 20px;
-  height: 20px;
-  background-color: #c05a00;
-  border-radius: 50% 20% 50% 20% / 30% 60% 30% 60%;
-  opacity: 0.8;
-  pointer-events: none;
-  animation-name: fall, sway;
-  animation-timing-function: linear, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-}
-
+/* ① 重新写关键帧 */
 @keyframes fall {
-  0% {
-    transform: translateY(0);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+  from { top: -50px; opacity: 0.8; }
+  to   { top: 110vh; opacity: 0; }
 }
 
 @keyframes sway {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(20px);
-  }
+  0%,100% { transform: translateX(0) rotateZ(0deg); }
+  50%     { transform: translateX(20px) rotateZ(10deg); }
+}
+
+/* ② .leaf 同时套两段动画 */
+.leaf{
+  position: fixed;
+  left: var(--leaf-left);   /* JS 随机填入 */
+  top: -50px;
+  width: 20px; height: 20px;
+  background:#c05a00;
+  border-radius:50% 20% 50% 20% / 30% 60% 30% 60%;
+  pointer-events:none;
+  opacity:.8;
+
+  /* 顺序随意，因为操作的是不同属性 */
+  animation: fall var(--fall-dur) linear infinite,
+             sway var(--sway-dur) ease-in-out infinite;
 }
 
 body {

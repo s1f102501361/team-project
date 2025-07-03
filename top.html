@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>日本の都道府県おすすめ紹介</title>
-  <link rel="stylesheet" href="CSS/top.css" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap">
+  <link rel="stylesheet" href="CSS/top.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap">
 </head>
 <body>
   <div id="overlay">
@@ -101,19 +102,37 @@
     <button id="scrollToTop" title="ページ上部へ">↑</button>
   </div>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const overlay = document.getElementById('overlay');
-      overlay.classList.add('show');
-      setTimeout(() => {
-        overlay.classList.remove('show');
-        overlay.classList.add('hide');
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay     = document.getElementById('overlay');
+    const mainContent = document.getElementById('mainContent');
+    const navEntry  = performance.getEntriesByType?.('navigation')[0];
+    const navType   = navEntry ? navEntry.type
+                             : (performance.navigation?.type);
+    const isReload  = navType === 'reload' || navType === 1;
 
-        setTimeout(() => {
-          overlay.style.display = 'none';
-          document.getElementById('mainContent').style.display = 'block';
-        }, 1000);
-      }, 3500);
-    });
+    if (isReload) {
+      sessionStorage.removeItem('haikuIntroShown');
+    }
+
+    if (sessionStorage.getItem('haikuIntroShown')) {
+      overlay.style.display     = 'none';
+      mainContent.style.display = 'block';
+      return;
+    }
+
+    overlay.classList.add('show');
+    createLeaves(15);
+    setTimeout(() => {
+      overlay.classList.remove('show');
+      overlay.classList.add('hide');
+      setTimeout(() => {
+        overlay.style.display     = 'none';
+        mainContent.style.display = 'block';
+      }, 1000);
+    }, 3500);
+
+    sessionStorage.setItem('haikuIntroShown', 'true');
+  });
   </script>
   <script>
     function createLeaves(num) {
@@ -128,7 +147,9 @@
         const fallDuration = 4000 + Math.random() * 3000;
         const swayDuration = 2000 + Math.random() * 2000;
 
-        leaf.style.animationDuration = `${fallDuration}ms, ${swayDuration}ms`;
+        leaf.style.setProperty('--fall-dur',  `${fallDuration}ms`);
+        leaf.style.setProperty('--sway-dur',  `${swayDuration}ms`);
+        leaf.style.setProperty('--leaf-left', Math.random()*100 + 'vw');
         leaf.style.animationDelay = `${Math.random() * 4000}ms, 0ms`;
 
         container.appendChild(leaf);
