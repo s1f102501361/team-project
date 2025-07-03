@@ -1,3 +1,98 @@
+#overlay {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Noto Serif JP', serif;
+}
+
+#overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#haikuContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Yuji Boku', serif;
+  width: 300px;
+  height: 300px;
+}
+
+
+.haiku-line {
+  writing-mode: vertical-rl;
+  position: absolute;
+  font-size: 2.4em;
+  color: rgba(44, 26, 12, 0.9);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.haiku-line {
+  background: rgba(255, 250, 240, 0.8);
+  border: 1px solid #c2b48b;
+  text-shadow: 1px 1px 1px #eee;
+}
+
+
+.line1 {
+  top: -50%;
+  right: 0%;
+}
+.line2 {
+  top: 10%;
+  right: 40%;
+}
+
+.leaf {
+  position: fixed;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background-color: #c05a00;
+  border-radius: 50% 20% 50% 20% / 30% 60% 30% 60%;
+  opacity: 0.8;
+  pointer-events: none;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
 body {
   font-family: 'Noto Serif JP', '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
   background-image: url('https://www.transparenttextures.com/patterns/white-wall.png'); /* 和紙風 */
@@ -6,6 +101,11 @@ body {
   margin: 20px;
   line-height: 1.8;
   color: #3c2f23;
+  
+}
+
+body {
+  font-family: 'Noto Serif JP', '游明朝体', serif;
 }
 
 
