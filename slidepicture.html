@@ -7,6 +7,8 @@
 </head>
 <body>
   <h1>スライドショー写真一覧</h1>
+  <button id="clearImages" style="margin-bottom: 20px;">アップロードした写真をすべて削除</button>
+  <div class="gallery"></div>
   <script>
     const defaultImages = [
       "toppicture/1.png",
@@ -24,6 +26,14 @@
       img.src = src;
       img.alt = "写真";
       gallery.appendChild(img);
+    });
+
+    document.getElementById("clearImages").addEventListener("click", () => {
+      const confirmed = confirm("アップロードした写真をすべて削除しますか？");
+      if (confirmed) {
+        localStorage.removeItem('uploadedImages');
+        location.reload();
+      }
     });
   </script>
 
