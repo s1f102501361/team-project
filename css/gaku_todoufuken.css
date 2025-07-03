@@ -4,6 +4,14 @@
   padding: 0;
 }
 
+:root{
+  --anim-fast: .3s ease;
+  --brand-brown:        #c2b48b;
+  --brand-brown-dark:   #a7986b;
+}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
 body {
   font-family: sans-serif;
   background-color: #f9f6ef;
@@ -57,12 +65,17 @@ h1 {
   font-size: 1.2em;
   color: #333;
 }
-#tourism-photo img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  margin-top: 10px;
+
+#tourism-photo img{
+  width:100%;
+  height:auto;
+  border-radius:6px;
+  margin-top:10px;
+  transition: opacity .5s ease, transform .5s ease;
+  opacity:1;
 }
+
+.fade-out { opacity:0; } 
 
 #tourism-info {
   flex: 1 1 40%;
@@ -150,19 +163,52 @@ a.back-link:hover {
   }
 }
 
-#tourism-photo img {
-  transition: transform 0.5s ease;
-}
 #tourism-photo img:hover,
 #tourism-photo img:focus-visible {
   transform: scale(1.02);
 }
 
+.spot-btn{
+  width:100%;
+  padding:8px 16px;
+  background:var(--brand-brown);
+  color:#fff;
+  font:600 16px/1 sans-serif;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  text-align:center;
+  transition:background-color var(--anim-fast),
+             transform        var(--anim-fast);
+}
 .spot-btn:hover,
-.spot-btn:focus-visible,
-#back-link:hover,
-#back-link:focus-visible {
-  transform: scale(1.02);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.spot-btn:focus-visible{
+  background:var(--brand-brown-dark);
+  transform:translateY(-2px) scale(1.04);
 }
 
+.spot-btn.active{
+  background:var(--brand-brown-dark);
+  box-shadow:0 0 0 3px var(--brand-brown) inset;
+  transform:translateY(-2px);
+}
+
+#back-link,
+a.back-link{
+  transition:background-color var(--anim-fast),
+             transform        var(--anim-fast);
+}
+#back-link:hover,
+#back-link:focus-visible,
+a.back-link:hover,
+a.back-link:focus-visible{
+  transform:translateY(-2px) scale(1.02);
+}
+
+.elevate{
+  transition:transform var(--anim-fast);
+}
+.elevate:hover,
+.elevate:focus-visible{
+  transform:scale(1.02);
+}
