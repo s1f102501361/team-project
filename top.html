@@ -90,9 +90,9 @@
   <script>
 
     let imagePaths = [
-      "uploads/photo1.jpg",
-      "uploads/photo2.jpg",
-      "uploads/photo3.jpg"
+      "toppicture/1.png",
+      "toppicture/2.png",
+      "toppicture/3.png"
     ];
 
     const sliderTrack = document.getElementById("sliderTrack");
@@ -103,8 +103,8 @@
       shuffled.forEach(path => {
         const img = document.createElement("img");
         img.src = path;
-        img.style.width = "200px";
-        img.style.height = "150px";
+        img.style.width = "400px";
+        img.style.height = "250px";
         img.style.objectFit = "cover";
         img.style.marginRight = "10px";
         img.style.borderRadius = "4px";
