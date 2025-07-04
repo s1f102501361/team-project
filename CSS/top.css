@@ -59,7 +59,6 @@
   right: 40%;
 }
 
-/* ① 重新写关键帧 */
 @keyframes fall {
   from { top: -50px; opacity: 0.8; }
   to   { top: 110vh; opacity: 0; }
@@ -70,10 +69,9 @@
   50%     { transform: translateX(20px) rotateZ(10deg); }
 }
 
-/* ② .leaf 同时套两段动画 */
 .leaf{
   position: fixed;
-  left: var(--leaf-left);   /* JS 随机填入 */
+  left: var(--leaf-left);
   top: -50px;
   width: 20px; height: 20px;
   background:#c05a00;
@@ -81,7 +79,6 @@
   pointer-events:none;
   opacity:.8;
 
-  /* 顺序随意，因为操作的是不同属性 */
   animation: fall var(--fall-dur) linear infinite,
              sway var(--sway-dur) ease-in-out infinite;
 }
