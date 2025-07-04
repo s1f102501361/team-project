@@ -23,7 +23,7 @@
       <div id="tourism-area">
         <h3>観光地を選択してください</h3>
         <ul id="tourism-list">
-          <li><button class="spot-btn" data-key="A">大通公園（札幌市）</button></li>
+          <li><button class="spot-btn" data-key="A">大通公園</button></li>
           <li><button class="spot-btn" data-key="B">小樽運河</button></li>
           <li><button class="spot-btn" data-key="C">富良野・美瑛のラベンダー畑</button></li>
         </ul>
@@ -39,25 +39,20 @@
   <a id="back-link" href="../top.html">← トップページに戻る</a>
 
   <script>
-    let imagePaths = [
-    "../画像ファイル/大通公園.png",          // index 0 → A
-    "画像ファイル/小樽運河.png",          // index 1 → B
-    "画像ファイル/富良野美瑛ラベンダー畑.png" // index 2 → C
-  ];
     const SPOTS = {
       A: {
-        name: "大通公園（札幌市）",
-        img: 0,
+        name: "大通公園",
+        img: "https://cdn.pixabay.com/photo/2015/02/17/13/54/hokkaido-639412_1280.jpg",
         desc: "札幌市の中心部を東西に横断する大通公園は、全長約1.5kmにわたる都市のオアシスである。花壇や噴水、彫刻が点在し、四季を通じて市民や観光客の憩いの場となっている。冬季には「さっぽろ雪まつり」が開催され、巨大な雪像が立ち並ぶ光景は世界的にも有名である。都市と自然の調和が美しい場所である。"
       },
       B: {
         name: "小樽運河",
-        img: 1,
+        img: "https://cdn.pixabay.com/photo/2016/04/21/11/26/himeji-castle-1343128_1280.jpg",
         desc: "小樽市の中心部を流れる小樽運河は、かつて港として栄えた歴史を今に伝える風情ある景観である。石造倉庫やガス灯が並ぶ運河沿いの遊歩道は、昼はレトロな情緒、夜はライトアップされた幻想的な光景が魅力である。近隣にはガラス工房やスイーツ店が立ち並び、散策にも適した観光地である。"
       },
       C: {
         name: "富良野・美瑛のラベンダー畑",
-        img: 2,
+        img: "https://cdn.pixabay.com/photo/2021/07/02/19/09/lavenders-6382337_1280.jpg",
         desc: "富良野・美瑛エリアは、北海道を代表する美しい丘陵地帯であり、特に夏のラベンダー畑は圧巻である。一面を紫色に染める花々と、青空や山々が織りなす景観は訪れる者を魅了する。美瑛ではパッチワークの路と呼ばれる景勝地が点在し、写真撮影やドライブに適したスポットである。"
       }
     };
@@ -72,7 +67,7 @@
       const spot = SPOTS[key];
       if(!spot) return;
 
-      imgTag.src = imagePaths[spot.img];
+      imgTag.src = spot.img;
       imgTag.alt = `${spot.name}の写真`;
 
       introHeading.textContent = `${spot.name}の紹介`;
