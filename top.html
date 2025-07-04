@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>日本の都道府県おすすめ紹介</title>
-  <link rel="stylesheet" href="CSS/top.css" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap">
+  <link rel="stylesheet" href="CSS/top.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap">
 </head>
 <body>
   <div id="overlay">
@@ -31,7 +32,7 @@
       </div>
     </div>
     <div style="margin-top: 15px;">
-      <a href="slidepicture.html" target="_blank">
+      <a href="slidepicture.html" target="_self">
         <button>写真一覧を見る</button>
       </a>
     </div>
@@ -40,53 +41,53 @@
     <input type="text" id="searchBar" placeholder="都道府県を検索">
 
     <div class="prefecture-list" id="prefectureList">
-      <button class="prefecture" data-pref="北海道" onclick="visitPrefecture('北海道')">北海道</button>
-      <button class="prefecture" data-pref="青森県" onclick="visitPrefecture('青森県')">青森県</button>
-      <button class="prefecture" data-pref="岩手県" onclick="visitPrefecture('岩手県')">岩手県</button>
-      <button class="prefecture" data-pref="宮城県" onclick="visitPrefecture('宮城県')">宮城県</button>
-      <button class="prefecture" data-pref="秋田県" onclick="visitPrefecture('秋田県')">秋田県</button>
-      <button class="prefecture" data-pref="山形県" onclick="visitPrefecture('山形県')">山形県</button>
-      <button class="prefecture" data-pref="福島県" onclick="visitPrefecture('福島県')">福島県</button>
-      <button class="finish-prefecture" data-pref="茨城県" onclick="visitPrefecture('茨城県')">茨城県</button>
-      <button class="finish-prefecture" data-pref="栃木県" onclick="visitPrefecture('栃木県')">栃木県</button>
-      <button class="finish-prefecture" data-pref="群馬県" onclick="visitPrefecture('群馬県')">群馬県</button>
-      <button class="finish-prefecture" data-pref="埼玉県" onclick="visitPrefecture('埼玉県')">埼玉県</button>
-      <button class="finish-prefecture" data-pref="千葉県" onclick="visitPrefecture('千葉県')">千葉県</button>
-      <button class="finish-prefecture" data-pref="東京都" onclick="visitPrefecture('東京都')">東京都</button>
-      <button class="finish-prefecture" data-pref="神奈川県" onclick="visitPrefecture('神奈川県')">神奈川県</button>
-      <button class="prefecture" data-pref="新潟県" onclick="visitPrefecture('新潟県')">新潟県</button>
-      <button class="prefecture" data-pref="富山県" onclick="visitPrefecture('富山県')">富山県</button>
-      <button class="prefecture" data-pref="石川県" onclick="visitPrefecture('石川県')">石川県</button>
-      <button class="prefecture" data-pref="福井県" onclick="visitPrefecture('福井県')">福井県</button>
-      <button class="finish-prefecture" data-pref="山梨県" onclick="visitPrefecture('山梨県')">山梨県</button>
-      <button class="finish-prefecture" data-pref="長野県" onclick="visitPrefecture('長野県')">長野県</button>
-      <button class="finish-prefecture" data-pref="岐阜県" onclick="visitPrefecture('岐阜県')">岐阜県</button>
-      <button class="finish-prefecture" data-pref="静岡県" onclick="visitPrefecture('静岡県')">静岡県</button>
-      <button class="finish-prefecture" data-pref="愛知県" onclick="visitPrefecture('愛知県')">愛知県</button>
-      <button class="finish-prefecture" data-pref="三重県" onclick="visitPrefecture('三重県')">三重県</button>
-      <button class="prefecture" data-pref="滋賀県" onclick="visitPrefecture('滋賀県')">滋賀県</button>
-      <button class="prefecture" data-pref="京都府" onclick="visitPrefecture('京都府')">京都府</button>
-      <button class="prefecture" data-pref="大阪府" onclick="visitPrefecture('大阪府')">大阪府</button>
-      <button class="prefecture" data-pref="兵庫県" onclick="visitPrefecture('兵庫県')">兵庫県</button>
-      <button class="prefecture" data-pref="奈良県" onclick="visitPrefecture('奈良県')">奈良県</button>
-      <button class="prefecture" data-pref="和歌山県" onclick="visitPrefecture('和歌山県')">和歌山県</button>
-      <button class="prefecture" data-pref="鳥取県" onclick="visitPrefecture('鳥取県')">鳥取県</button>
-      <button class="prefecture" data-pref="島根県" onclick="visitPrefecture('島根県')">島根県</button>
-      <button class="prefecture" data-pref="岡山県" onclick="visitPrefecture('岡山県')">岡山県</button>
-      <button class="prefecture" data-pref="広島県" onclick="visitPrefecture('広島県')">広島県</button>
-      <button class="prefecture" data-pref="山口県" onclick="visitPrefecture('山口県')">山口県</button>
-      <button class="prefecture" data-pref="徳島県" onclick="visitPrefecture('徳島県')">徳島県</button>
-      <button class="prefecture" data-pref="香川県" onclick="visitPrefecture('香川県')">香川県</button>
-      <button class="prefecture" data-pref="愛媛県" onclick="visitPrefecture('愛媛県')">愛媛県</button>
-      <button class="prefecture" data-pref="高知県" onclick="visitPrefecture('高知県')">高知県</button>
-      <button class="prefecture" data-pref="福岡県" onclick="visitPrefecture('福岡県')">福岡県</button>
-      <button class="prefecture" data-pref="佐賀県" onclick="visitPrefecture('佐賀県')">佐賀県</button>
-      <button class="prefecture" data-pref="長崎県" onclick="visitPrefecture('長崎県')">長崎県</button>
-      <button class="prefecture" data-pref="熊本県" onclick="visitPrefecture('熊本県')">熊本県</button>
-      <button class="prefecture" data-pref="大分県" onclick="visitPrefecture('大分県')">大分県</button>
-      <button class="prefecture" data-pref="宮崎県" onclick="visitPrefecture('宮崎県')">宮崎県</button>
-      <button class="prefecture" data-pref="鹿児島県" onclick="visitPrefecture('鹿児島県')">鹿児島県</button>
-      <button class="prefecture" data-pref="沖縄県" onclick="visitPrefecture('沖縄県')">沖縄県</button>
+      <button class="unfinish-prefecture" data-pref="北海道" onclick="visitPrefecture('北海道')">北海道</button>
+      <button class="unfinish-prefecture" data-pref="青森県" onclick="visitPrefecture('青森県')">青森県</button>
+      <button class="unfinish-prefecture" data-pref="岩手県" onclick="visitPrefecture('岩手県')">岩手県</button>
+      <button class="unfinish-prefecture" data-pref="宮城県" onclick="visitPrefecture('宮城県')">宮城県</button>
+      <button class="unfinish-prefecture" data-pref="秋田県" onclick="visitPrefecture('秋田県')">秋田県</button>
+      <button class="unfinish-prefecture" data-pref="山形県" onclick="visitPrefecture('山形県')">山形県</button>
+      <button class="unfinish-prefecture" data-pref="福島県" onclick="visitPrefecture('福島県')">福島県</button>
+      <button class="prefecture" data-pref="茨城県" onclick="visitPrefecture('茨城県')">茨城県</button>
+      <button class="prefecture" data-pref="栃木県" onclick="visitPrefecture('栃木県')">栃木県</button>
+      <button class="prefecture" data-pref="群馬県" onclick="visitPrefecture('群馬県')">群馬県</button>
+      <button class="prefecture" data-pref="埼玉県" onclick="visitPrefecture('埼玉県')">埼玉県</button>
+      <button class="prefecture" data-pref="千葉県" onclick="visitPrefecture('千葉県')">千葉県</button>
+      <button class="prefecture" data-pref="東京都" onclick="visitPrefecture('東京都')">東京都</button>
+      <button class="prefecture" data-pref="神奈川県" onclick="visitPrefecture('神奈川県')">神奈川県</button>
+      <button class="unfinish-prefecture" data-pref="新潟県" onclick="visitPrefecture('新潟県')">新潟県</button>
+      <button class="unfinish-prefecture" data-pref="富山県" onclick="visitPrefecture('富山県')">富山県</button>
+      <button class="unfinish-prefecture" data-pref="石川県" onclick="visitPrefecture('石川県')">石川県</button>
+      <button class="unfinish-prefecture" data-pref="福井県" onclick="visitPrefecture('福井県')">福井県</button>
+      <button class="prefecture" data-pref="山梨県" onclick="visitPrefecture('山梨県')">山梨県</button>
+      <button class="prefecture" data-pref="長野県" onclick="visitPrefecture('長野県')">長野県</button>
+      <button class="prefecture" data-pref="岐阜県" onclick="visitPrefecture('岐阜県')">岐阜県</button>
+      <button class="prefecture" data-pref="静岡県" onclick="visitPrefecture('静岡県')">静岡県</button>
+      <button class="prefecture" data-pref="愛知県" onclick="visitPrefecture('愛知県')">愛知県</button>
+      <button class="prefecture" data-pref="三重県" onclick="visitPrefecture('三重県')">三重県</button>
+      <button class="unfinish-prefecture" data-pref="滋賀県" onclick="visitPrefecture('滋賀県')">滋賀県</button>
+      <button class="unfinish-prefecture" data-pref="京都府" onclick="visitPrefecture('京都府')">京都府</button>
+      <button class="unfinish-prefecture" data-pref="大阪府" onclick="visitPrefecture('大阪府')">大阪府</button>
+      <button class="unfinish-prefecture" data-pref="兵庫県" onclick="visitPrefecture('兵庫県')">兵庫県</button>
+      <button class="unfinish-prefecture" data-pref="奈良県" onclick="visitPrefecture('奈良県')">奈良県</button>
+      <button class="unfinish-prefecture" data-pref="和歌山県" onclick="visitPrefecture('和歌山県')">和歌山県</button>
+      <button class="unfinish-prefecture" data-pref="鳥取県" onclick="visitPrefecture('鳥取県')">鳥取県</button>
+      <button class="unfinish-prefecture" data-pref="島根県" onclick="visitPrefecture('島根県')">島根県</button>
+      <button class="unfinish-prefecture" data-pref="岡山県" onclick="visitPrefecture('岡山県')">岡山県</button>
+      <button class="unfinish-prefecture" data-pref="広島県" onclick="visitPrefecture('広島県')">広島県</button>
+      <button class="unfinish-prefecture" data-pref="山口県" onclick="visitPrefecture('山口県')">山口県</button>
+      <button class="unfinish-prefecture" data-pref="徳島県" onclick="visitPrefecture('徳島県')">徳島県</button>
+      <button class="unfinish-prefecture" data-pref="香川県" onclick="visitPrefecture('香川県')">香川県</button>
+      <button class="unfinish-prefecture" data-pref="愛媛県" onclick="visitPrefecture('愛媛県')">愛媛県</button>
+      <button class="unfinish-prefecture" data-pref="高知県" onclick="visitPrefecture('高知県')">高知県</button>
+      <button class="unfinish-prefecture" data-pref="福岡県" onclick="visitPrefecture('福岡県')">福岡県</button>
+      <button class="unfinish-prefecture" data-pref="佐賀県" onclick="visitPrefecture('佐賀県')">佐賀県</button>
+      <button class="unfinish-prefecture" data-pref="長崎県" onclick="visitPrefecture('長崎県')">長崎県</button>
+      <button class="unfinish-prefecture" data-pref="熊本県" onclick="visitPrefecture('熊本県')">熊本県</button>
+      <button class="unfinish-prefecture" data-pref="大分県" onclick="visitPrefecture('大分県')">大分県</button>
+      <button class="unfinish-prefecture" data-pref="宮崎県" onclick="visitPrefecture('宮崎県')">宮崎県</button>
+      <button class="unfinish-prefecture" data-pref="鹿児島県" onclick="visitPrefecture('鹿児島県')">鹿児島県</button>
+      <button class="unfinish-prefecture" data-pref="沖縄県" onclick="visitPrefecture('沖縄県')">沖縄県</button>
     </div>
 
     <div class="ranking">
@@ -101,19 +102,37 @@
     <button id="scrollToTop" title="ページ上部へ">↑</button>
   </div>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const overlay = document.getElementById('overlay');
-      overlay.classList.add('show');
-      setTimeout(() => {
-        overlay.classList.remove('show');
-        overlay.classList.add('hide');
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay     = document.getElementById('overlay');
+    const mainContent = document.getElementById('mainContent');
+    const navEntry  = performance.getEntriesByType?.('navigation')[0];
+    const navType   = navEntry ? navEntry.type
+                             : (performance.navigation?.type);
+    const isReload  = navType === 'reload' || navType === 1;
 
-        setTimeout(() => {
-          overlay.style.display = 'none';
-          document.getElementById('mainContent').style.display = 'block';
-        }, 1000);
-      }, 3500);
-    });
+    if (isReload) {
+      sessionStorage.removeItem('haikuIntroShown');
+    }
+
+    if (sessionStorage.getItem('haikuIntroShown')) {
+      overlay.style.display     = 'none';
+      mainContent.style.display = 'block';
+      return;
+    }
+
+    overlay.classList.add('show');
+    createLeaves(15);
+    setTimeout(() => {
+      overlay.classList.remove('show');
+      overlay.classList.add('hide');
+      setTimeout(() => {
+        overlay.style.display     = 'none';
+        mainContent.style.display = 'block';
+      }, 1000);
+    }, 3500);
+
+    sessionStorage.setItem('haikuIntroShown', 'true');
+  });
   </script>
   <script>
     function createLeaves(num) {
@@ -128,7 +147,9 @@
         const fallDuration = 4000 + Math.random() * 3000;
         const swayDuration = 2000 + Math.random() * 2000;
 
-        leaf.style.animationDuration = `${fallDuration}ms, ${swayDuration}ms`;
+        leaf.style.setProperty('--fall-dur',  `${fallDuration}ms`);
+        leaf.style.setProperty('--sway-dur',  `${swayDuration}ms`);
+        leaf.style.setProperty('--leaf-left', Math.random()*100 + 'vw');
         leaf.style.animationDelay = `${Math.random() * 4000}ms, 0ms`;
 
         container.appendChild(leaf);
@@ -234,7 +255,7 @@
 
     document.getElementById("searchBar").addEventListener("input", () => {
       const search = document.getElementById("searchBar").value.trim();
-      document.querySelectorAll(".prefecture-list .prefecture").forEach(button => {
+      document.querySelectorAll(".prefecture-list .prefecture, .prefecture-list .unfinish-prefecture").forEach(button => {
         const pref = button.dataset.pref;
         button.style.display = pref.includes(search) ? "inline-block" : "none";
       });

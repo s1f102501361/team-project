@@ -59,38 +59,28 @@
   right: 40%;
 }
 
-.leaf {
-  position: fixed;
-  top: -50px;
-  width: 20px;
-  height: 20px;
-  background-color: #c05a00;
-  border-radius: 50% 20% 50% 20% / 30% 60% 30% 60%;
-  opacity: 0.8;
-  pointer-events: none;
-  animation-name: fall, sway;
-  animation-timing-function: linear, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-}
-
 @keyframes fall {
-  0% {
-    transform: translateY(0);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+  from { top: -50px; opacity: 0.8; }
+  to   { top: 110vh; opacity: 0; }
 }
 
 @keyframes sway {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(20px);
-  }
+  0%,100% { transform: translateX(0) rotateZ(0deg); }
+  50%     { transform: translateX(20px) rotateZ(10deg); }
+}
+
+.leaf{
+  position: fixed;
+  left: var(--leaf-left);
+  top: -50px;
+  width: 20px; height: 20px;
+  background:#c05a00;
+  border-radius:50% 20% 50% 20% / 30% 60% 30% 60%;
+  pointer-events:none;
+  opacity:.8;
+
+  animation: fall var(--fall-dur) linear infinite,
+             sway var(--sway-dur) ease-in-out infinite;
 }
 
 body {
@@ -232,7 +222,7 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.finish-prefecture {
+.prefecture {
   background-color: #e6ddc4;
   border: 1px solid #c2b48b;
   border-radius: 8px;
@@ -242,7 +232,7 @@ h1 {
   cursor: pointer;
 }
 
-.prefecture {
+.unfinish-prefecture {
   background-color: #eeebe2;
   border: 1px solid #e6ddc4;
   border-radius: 8px;
