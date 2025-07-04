@@ -14,7 +14,7 @@
       <p class="haiku-line line2">人生を豊かに</p>
     </div>
   </div>
-  <div id="mainContent" style="display: none;">
+  <div id="mainContent">
     <h1>日本の都道府県観光地紹介</h1>
 
   <div id="photoGallery" style="margin-top: 40px;">
@@ -117,20 +117,20 @@
     }
 
     if (sessionStorage.getItem('haikuIntroShown')) {
-      overlay.style.display     = 'none';
-      mainContent.style.display = 'block';
+      overlay.style.display = 'none';
+      mainContent.classList.add('reveal');          // 立即显示主内容
       return;
     }
 
     overlay.classList.add('show');
     createLeaves(15);
     setTimeout(() => {
-      overlay.classList.remove('show');
+      overlay.classList.remove('show');   // 开始淡出
       overlay.classList.add('hide');
-      setTimeout(() => {
-        overlay.style.display     = 'none';
-        mainContent.style.display = 'block';
-      }, 1000);
+      mainContent.classList.add('reveal'); // 同步淡入主内容
+      setTimeout(() => {                  // 动画完成后彻底移除遮罩
+        overlay.style.display = 'none';
+      }, 1000);                           // 与 overlay 的 transition 时长保持一致
     }, 3500);
 
     sessionStorage.setItem('haikuIntroShown', 'true');

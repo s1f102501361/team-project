@@ -262,3 +262,14 @@ h1 {
 #scrollToTop:hover {
   background-color: #d35400;
 }
+
+#mainContent{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+#mainContent.reveal{
+  opacity: 1;
+  pointer-events: auto;
+}
