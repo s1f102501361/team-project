@@ -118,19 +118,19 @@
 
     if (sessionStorage.getItem('haikuIntroShown')) {
       overlay.style.display = 'none';
-      mainContent.classList.add('reveal');          // 立即显示主内容
+      mainContent.classList.add('reveal');
       return;
     }
 
     overlay.classList.add('show');
     createLeaves(15);
     setTimeout(() => {
-      overlay.classList.remove('show');   // 开始淡出
+      overlay.classList.remove('show');
       overlay.classList.add('hide');
-      mainContent.classList.add('reveal'); // 同步淡入主内容
-      setTimeout(() => {                  // 动画完成后彻底移除遮罩
+      mainContent.classList.add('reveal');
+      setTimeout(() => {
         overlay.style.display = 'none';
-      }, 1000);                           // 与 overlay 的 transition 时长保持一致
+      }, 1000);
     }, 3500);
 
     sessionStorage.setItem('haikuIntroShown', 'true');
