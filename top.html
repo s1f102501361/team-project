@@ -17,20 +17,22 @@
   <div id="mainContent" style="display: none;">
     <h1>日本の都道府県観光地紹介</h1>
 
-    <div id="photoGallery" style="margin-top: 40px;">
-      <h2>みんなの写真ギャラリー</h2>
+  <div id="photoGallery" style="margin-top: 40px;">
+    <h2>みんなの写真ギャラリー</h2>
 
-      <div id="slider" style="overflow: hidden; white-space: nowrap; border: 1px solid #ccc; border-radius: 8px;">
-        <div id="sliderTrack" style="display: inline-block; transition: transform 0.5s ease;"></div>
-      </div>
-
-      <div id="uploadSection" style="margin-top: 20px;">
-        <h3>あなたの思い出を投稿しよう</h3>
-        <input type="file" id="photoUpload" accept="image/*">
-        <button onclick="handleUpload()">アップロード</button>
-        <p id="uploadStatus"></p>
-      </div>
+    <div id="slider"
+         style="overflow: hidden; white-space: nowrap; border: 1px solid #ccc; border-radius: 8px;">
+      <div id="sliderTrack" style="display: inline-block; will-change: transform;"></div>
     </div>
+
+    <div id="uploadSection" style="margin-top: 20px;">
+      <h3>あなたの思い出を投稿しよう</h3>
+      <input type="file" id="photoUpload" accept="image/*">
+      <button onclick="handleUpload()">アップロード</button>
+      <p id="uploadStatus"></p>
+    </div>
+  </div>
+
     <div style="margin-top: 15px;">
       <a href="slidepicture.html" target="_self">
         <button>写真一覧を見る</button>
@@ -160,69 +162,6 @@
       createLeaves(15);
     });
 
-    let imagePaths = [
-      "toppicture/1.png",
-      "toppicture/2.png",
-      "toppicture/3.png",
-      "toppicture/4.png"
-    ];
-
-    const sliderTrack = document.getElementById("sliderTrack");
-
-    function populateSlider() {
-      sliderTrack.innerHTML = '';
-      const shuffled = [...imagePaths].sort(() => Math.random() - 0.5);
-      shuffled.forEach(path => {
-        const img = document.createElement("img");
-        img.src = path;
-        img.style.width = "400px";
-        img.style.height = "250px";
-        img.style.objectFit = "cover";
-        img.style.marginRight = "10px";
-        img.style.borderRadius = "4px";
-        sliderTrack.appendChild(img);
-      });
-    }
-
-  function handleUpload() {
-    const input = document.getElementById('photoUpload');
-    const file = input.files[0];
-    const status = document.getElementById('uploadStatus');
-
-    if (!file) {
-      status.textContent = 'ファイルを選択してください。';
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const imageData = e.target.result;
-      imagePaths.push(imageData);
-      populateSlider();
-      status.textContent = 'アップロード完了！（この端末のみ）';
-      const stored = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
-      stored.push(imageData);
-      localStorage.setItem('uploadedImages', JSON.stringify(stored));
-    };
-    reader.readAsDataURL(file);
-  }
-
-
-    function startScrolling() {
-      let offset = 0;
-      setInterval(() => {
-        offset += 1;
-        sliderTrack.style.transform = `translateX(-${offset}px)`;
-        if (offset > sliderTrack.scrollWidth - 500) {
-          offset = 0;
-        }
-      }, 30);
-    }
-
-    populateSlider();
-    startScrolling();
-
-
     function visitPrefecture(pref) {
       const key = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${pref}`;
       const visitCounts = JSON.parse(localStorage.getItem('visitCounts') || '{}');
@@ -276,6 +215,116 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+  </script>
+  <script>
+  (() => {
+  const baseImages = [
+    "toppicture/1.png",
+    "toppicture/2.png",
+    "toppicture/3.png",
+    "toppicture/4.png",
+    "toppicture/5.jpg"
+  ];
+
+  let stored = [];
+  try {
+    stored = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+  } catch (e) {
+    localStorage.removeItem('uploadedImages');
+  }
+
+  const imagePool   = [...baseImages, ...stored];
+  const slider      = document.getElementById("slider");
+  const sliderTrack = document.getElementById("sliderTrack");
+
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.src = e.target.dataset.src;
+        io.unobserve(e.target);
+      }
+    }),
+    { root: slider, rootMargin: "80px" }
+  );
+
+  function createImg(src) {
+    const img  = document.createElement("img");
+    img.dataset.src = src;
+    img.loading     = "lazy";
+    Object.assign(img.style, {
+      width:  "400px",
+      height: "250px",
+      objectFit: "cover",
+      marginRight:  "10px",
+      borderRadius: "4px"
+    });
+    sliderTrack.appendChild(img);
+    io.observe(img);
+  }
+
+  function renderGallery() {
+    sliderTrack.innerHTML = "";
+    imagePool.forEach(createImg);
+    imagePool.slice(0, 5).forEach(createImg);
+  }
+
+  let scrollPos = 0, lastTs = 0, rafId;
+  const SPEED = 0.04;
+
+  function tick(ts) {
+    if (!lastTs) lastTs = ts;
+    const delta = ts - lastTs;
+    lastTs = ts;
+
+    scrollPos += delta * SPEED;
+    const limit = sliderTrack.scrollWidth / 2;
+    if (scrollPos >= limit) scrollPos = 0;
+
+    sliderTrack.style.transform = `translateX(${-scrollPos}px)`;
+    rafId = requestAnimationFrame(tick);
+  }
+  rafId = requestAnimationFrame(tick);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(rafId);
+    else { lastTs = 0; rafId = requestAnimationFrame(tick); }
+  });
+
+  window.handleUpload = function () {
+    const input  = document.getElementById('photoUpload');
+    const file   = input.files[0];
+    const status = document.getElementById('uploadStatus');
+
+    if (!file) { status.textContent = 'ファイルを選択してください。'; return; }
+    if (!file.type.startsWith('image/')) {
+      status.textContent = '画像ファイルを選択してください。';
+      return;
+    }
+    if (file.size > 4 * 1024 * 1024) {
+      status.textContent = '4 MB 以下の画像にしてください。';
+      return;
+    }
+
+    const blobURL = URL.createObjectURL(file);
+    imagePool.push(blobURL);
+    renderGallery();
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        stored.push(e.target.result);
+        localStorage.setItem('uploadedImages', JSON.stringify(stored));
+        status.textContent = 'アップロード完了！（次回も表示されます）';
+      } catch (err) {
+        console.warn(err);
+        status.textContent = '保存容量を超えたため、今回は表示のみ行いました。';
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  renderGallery();
+  })();
   </script>
 </body>
 </html>
