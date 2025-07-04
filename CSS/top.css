@@ -222,7 +222,7 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.finish-prefecture {
+.prefecture {
   background-color: #e6ddc4;
   border: 1px solid #c2b48b;
   border-radius: 8px;
@@ -232,7 +232,7 @@ h1 {
   cursor: pointer;
 }
 
-.prefecture {
+.unfinish-prefecture {
   background-color: #eeebe2;
   border: 1px solid #e6ddc4;
   border-radius: 8px;
